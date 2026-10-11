@@ -1,76 +1,60 @@
-> [!CAUTION]
-> **There's now malicious links in the wild that disguise themselves as this project.**
->
-> Make sure that you download PineconeMC from `elyprismlauncher.github.io` and/or `pineconemc.ru`.
+# PineconeMC (FireyTech fork)
+
+> [!NOTE]
+> This is a **fork of [PineconeMC](https://github.com/ElyPrismLauncher/Launcher)**, which is itself a fork of [Prism Launcher](https://prismlauncher.org). This fork only ships **`.deb` packages**. There are no AppImage, Flatpak, Windows, or macOS builds here.
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/program_info/ru.pineconemc.launcher.logo-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="/program_info/ru.pineconemc.launcher.logo.svg">
-  <img alt="ru.pineconemc.launcher" src="/program_info/ru.pineconemc.launcher.logo.svg" width="40%">
-</picture>
+  A fork of PineconeMC that adds integrated support for Ely.by accounts (MSA accounts can still be used)<br />
+  <br />This is <b>not</b> endorsed by Prism Launcher, PineconeMC, or Ely.by.
 </p>
 
-<p align="center">
-  This <b>fork</b> of Prism Launcher adds integrated support for Ely.by accounts (MSA accounts can still be used)<br />
-  <br />This is <b>not</b> endorsed by Prism Launcher or Ely.by.
-</p>
+## Features
 
-## Why this fork?
+Inherited from PineconeMC:
 
-There are already quite a few forks out in the wild that add Ely.by support and/or disable the Microsoft account requirement. This fork goes beyond simply adding a login-password prompt and authlib-injector download.
-
-- Modern and secure login: PineconeMC uses OAuth2 to log you in. This means that your credentials are never transferred to the launcher. Instead, you log into your account on the official Ely.by page in the browser, and Ely.by gives the launcher a token to access your account with limited privileges.
-- Skins support on servers: All other forks rely exclusively on authlib-injector to patch Minecraft to support Ely.by. But authlib-injector can't provide skins on servers that don't have a special skins plugin installed. PineconeMC uses Ely.by's official Authlib patches, allowing you to see skins anywhere
+- **Ely.by login via OAuth2.** Your credentials never touch the launcher. You log in on the official Ely.by page in your browser, and Ely.by gives the launcher a limited-privilege token.
+- **Skins on any server.** Uses Ely.by's official Authlib patches rather than relying only on authlib-injector, so skins show up even on servers without a skins plugin.
+- **Microsoft accounts still work.**
 
 ## Installation
 
-- All downloads and instructions for PineconeMC can be found on the [Releases](https://github.com/ElyPrismLauncher/Launcher/releases/latest) page.
-- Last build status can be found in the [GitHub Actions](https://github.com/ElyPrismLauncher/Launcher/actions) tab.
+Only `.deb` packages are provided. Download the latest one from the [Releases](https://github.com/<your-username>/<your-repo>/releases/latest) page, then install it from the folder where you saved it:
 
-### Development Builds
+```bash
+cd ~/Downloads
+sudo apt install ./pineconemc_*.deb
+```
 
-Please understand that these builds are not intended for most users. There may be bugs, and other instabilities. You have been warned.
+Using `apt install ./file.deb` (instead of `dpkg -i`) also pulls in any missing dependencies.
 
-There are development builds available through:
+## Downloads and Verification
 
-- [GitHub Actions](https://github.com/ElyPrismLauncher/Launcher/actions) (includes builds from pull requests opened by contributors)
-- [nightly.link](https://nightly.link/ElyPrismLauncher/Launcher/workflows/build/develop) (this will always point only to the latest version of develop)
+> [!CAUTION]
+> Malicious copies of PineconeMC have been spotted in the wild. Only download this fork from the official Releases page of this repository. Do not trust links from other sources.
 
-These have debug information in the binaries, so their file sizes are relatively larger.
+## Development Builds
 
-## Community & Support
-
-Feel free to create a GitHub issue if you find a bug or want to suggest a new feature. We have a Discord server where other community members can help you:
-
-[![Octol1ttle's Studio Discord server](https://discordapp.com/api/guilds/1201522867901313045/widget.png?style=banner3)](https://discord.gg/5kcBCvnbTp)
+Development builds are not intended for most users. They may be unstable, and their binaries include debug information, so the files are larger.
 
 ## Building
 
-If you want to build PineconeMC yourself, check the [build instructions](https://prismlauncher.org/wiki/development/build-instructions).
+To build the `.deb` yourself, follow the [Prism Launcher build instructions](https://prismlauncher.org/wiki/development/build-instructions), then package the result with your own `.deb` tooling.
 
-## The following comes from the original Prism Launcher README
+## Community & Support
 
-### Forking/Redistributing/Custom builds policy
+Open a GitHub issue if you find a bug or want a feature. (only on the official repo) For upstream support, see the [PineconeMC Discord](https://discord.gg/5kcBCvnbTp).
 
-You are free to fork, redistribute and provide custom builds as long as you follow the terms of the [license](LICENSE) (this is a legal responsibility), and if you made code changes rather than just packaging a custom build, please do the following as a basic courtesy:
+## Licensing and Attribution
 
-- Make it clear that your fork is not Prism Launcher and is not endorsed by or affiliated with the Prism Launcher project (<https://prismlauncher.org>).
-- Go through [CMakeLists.txt](CMakeLists.txt) and change Prism Launcher's API keys to your own or set them to empty strings (`""`) to disable them (this way the program will still compile but the functionality requiring those keys will be disabled).
+This project is a fork of PineconeMC and Prism Launcher. It is not affiliated with or endorsed by either project, or by Ely.by.
 
-If you have any questions or want any clarification on the above conditions please make an issue and ask us.
+All launcher code is licensed under **GPL-3.0-only**. The logo and related assets are under **CC BY-SA 4.0**.
 
-If you are just building Prism Launcher for your distribution, please make sure to set the `Launcher_BUILD_PLATFORM` to a slug representing your distribution. Examples are `archlinux`, `fedora` and `nixpkgs`.
+### Forking / Redistribution
 
-Note that if you build this software without removing the provided API keys in [CMakeLists.txt](CMakeLists.txt) you are accepting the following terms and conditions:
+If you fork this project or build custom versions, please:
 
-- [Microsoft Identity Platform Terms of Use](https://docs.microsoft.com/en-us/legal/microsoft-identity-platform/terms-of-use)
-- [CurseForge 3rd Party API Terms and Conditions](https://support.curseforge.com/en/support/solutions/articles/9000207405-curse-forge-3rd-party-api-terms-and-conditions)
+- Make it clear that your fork is not Prism Launcher, PineconeMC, or endorsed by either project.
+- Replace the API keys in [CMakeLists.txt](CMakeLists.txt) with your own, or set them to empty strings (`""`) to disable the features that need them.
 
-If you do not agree with these terms and conditions, then remove the associated API keys from the [CMakeLists.txt](CMakeLists.txt) file by setting them to an empty string (`""`).
-
-### License [![https://github.com/PrismLauncher/PrismLauncher/blob/develop/LICENSE](https://img.shields.io/github/license/PrismLauncher/PrismLauncher?label=License&logo=gnu&color=C4282D)](LICENSE)
-
-All launcher code is available under the GPL-3.0-only license.
-
-The logo and related assets are under the CC BY-SA 4.0 license.
+Building without removing the provided API keys means you accept the [Microsoft Identity Platform Terms of Use](https://docs.microsoft.com/en-us/legal/microsoft-identity-platform/terms-of-use) and the [CurseForge 3rd Party API Terms](https://support.curseforge.com/en/support/solutions/articles/9000207405-curse-forge-3rd-party-api-terms-and-conditions).
